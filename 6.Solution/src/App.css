@@ -1,0 +1,26 @@
+.input-field {
+  margin-bottom: 50px;
+}
+
+input[type=checkbox] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+ul.todo-list {
+  margin-bottom: 40px;
+}
+
+li.todo {
+  margin-bottom: 10px;
+}
+label {
+  padding-right: 20px;
+  font-size: 1.1rem;
+}
+
+p {
+  font-size: 1.1rem;
+}
