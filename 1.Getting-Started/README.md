@@ -8,14 +8,16 @@ Today's goal is to set up the structure of our application and end up with a bas
 
 ### Step 1. Installation
 
-Create a folder for this project (I suggest you call it `intro-react` or `react-todolist`). Inside this folder, type the following command to start a **Vite** project :
+Got to Moodle and take the assignement for this project: `react-todolist`. 
+
+Once you are in the repo, type the following command to start a **Vite** project :
 
 `npm create vite`
 
 Then, select your :
 1. Project name
 2. Framework (choose React)
-3. Variant (select Javascript)
+3. Variant (select Javascript or Typescript)
 
 
 *Note : React used to have its own CLI project bundler : **react-create-app**, but it's been since deprecated. The closest modern way to simply create a React project is [Vite](https://vitejs.dev/guide/), but the React docs has some other options, like [Next.js](https://nextjs.org/docs/getting-started/installation).*
