@@ -15,17 +15,17 @@ For example, `<h1>Hello World</h1>` can be thought of as a component.
 Components can contain other components! How many components can you count in the following block of HTML?
 
 ```html
-<div class="header">
+<header class="header">
   <h1>Hello World</h1>
   <nav class="menu">
-    <div class="menu-item">About</div>
-    <div class="menu-item">Portfolio</div>
-    <div class="menu-item">Contacts</div>
+    <a href="about.html" class="menu-item">About</a>
+    <a href="portfolio.html" class="menu-item">Portfolio</a>
+    <a href="contact.html" class="menu-item">Contacts</a>
   </nav>
-</div>
+</header>
 ```
 
-`<h1>Hello World</h1>` is a component. And so is every `<div class="menu-item">...</div>`. And components can contain other components, which means that `<nav class="menu">...</nav>` is a component, and `<div class="header">...</div>` as well.
+`<h1>Hello World</h1>` is a component. And so is every `<a class="menu-item">...</a>`. And components can contain other components, which means that `<nav class="menu">...</nav>` is a component, and `<header class="header">...</header>` as well.
 
 In React things are a little different, but the analogy with HTML can help you wrap your heads around components.
 
@@ -131,20 +131,20 @@ const Title = () => {
 
 const Menu = () => {
   return (
-    <div className="menu">
-      <div className="menu-item">About</div>
-      <div className="menu-item">Portfolio</div>
-      <div className="menu-item">Contacts</div>
-    </div>
+    <nav className="menu">
+      <a href="about.html" class="menu-item">About</a>
+      <a href="portfolio.html" class="menu-item">Portfolio</a>
+      <a href="contact.html" class="menu-item">Contacts</a>
+    </nav>
   );
 };
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className="header">
       <Title />
       <Menu />
-    </div>
+    </header>
   );
 };
 ```
