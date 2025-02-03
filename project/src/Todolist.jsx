@@ -1,28 +1,50 @@
-import React from "react";
-import { useState } from "react";
+import { useState } from 'react';
 
-function Todolist() {
-    
-    const [todo, setTodo] = useState([])
-    const [todoInput, setTodoInput] = useState([])
+const initialTodos = [
+  { title: '1', id: 0 },
+  { title: '2', id: 1 },
+  { title: '3', id: 2 },
+];
 
-    return (
-        <>
-            <h1>My Todo App</h1>
-            <form action="#">
-                <input type="text" id="todo-input" name="todo" placeholder="Type a new todo" />
-                <br />
-                <button type="submit">Add Todo</button>
-            </form>
-            <h2>Todos</h2>
-            <section>
-                <input type="checkbox" /><label for="learn"> Learn React!</label><br />
-                <input type="checkbox" /><label for="awesome"> Be awesome!</label><br />
-                <input type="checkbox" /><label for="fun"> Have fun les pioupious 🐤!</label>
-            </section>
-        </>
-        
-    )
+export default function Todolist() {
+  const [todos, setTodos] = useState(initialTodos);
+  const [selectedTodo, setSelectedTodo] = useState(
+    todos[0]
+  );
+
+  function handleTodoChange(id, e) {
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          title: e.target.value,
+        };
+      } else {
+        return todo;
+      }
+    }));
+  }
+
+  return (
+    <>
+      <h1>My Todo App</h1>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={todo.id}>
+            <input
+              value={todo.title}
+              onChange={e => {
+                handleTodoChange(todo.id, e)
+              }} placeholder='Type a new todo'
+            />
+            {' '}
+            <button onClick={() => {
+              setSelectedTodo(todo);
+            }}>Add Todo</button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedTodo.title}.</p>
+    </>
+  );
 }
-
-export default Todolist
