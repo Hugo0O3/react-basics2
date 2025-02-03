@@ -1,6 +1,6 @@
 # React Basics
 
-https://gleeful-quokka-49ccb8.netlify.app/
+https://gorgeous-marigold-3f97ed.netlify.app/
 
 - Repository: `react-basics`
 - Mode: `solo`
