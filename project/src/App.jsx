@@ -1,64 +1,75 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "./TodoButton";
 import TodoList from "./Todolist";
 import Input from "./TodoInput";
 import "./App.css";
 
-export default class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: [],
-            todoText: ""
-        };
+export default function App() {
+
+    const [todos, setTodos] = useState([])
+    const [todoText, setTodoText] = useState('')
+    const [editId, setEditId] = useState(null)
+    const [editText, setEditText] = useState('')
+
+    const onChangeInput = (e) => {
+        setTodoText(e.target.value)
+    };
+
+    const onSubmitTodo = () => {
+        if (todoText.trim() === "") return
+        setTodos([...todos, { id: Date.now(), name: todoText, done: false }])
+        setTodoText("")
+    };
+
+    const onChangeBox = (item) => {
+        setTodos(todos.map(todo =>
+            todo.id === item.id ? { ...todo, done: !todo.done } : todo
+        ))
+    };
+
+    const handleEdit = (item) => {
+        setEditId(item.id)
+        setEditText(item.name)
     }
 
-    onChangeInput = e => {
-        this.setState({ todoText: e.target.value });
-    };
-
-    onSubmitTodo = () => {
-        if (this.state.todoText.trim() === "") return
-        this.setState(({ todos, todoText }) => ({
-            todos: [...todos, { id: todos.length + 1, name: todoText, done: false }],
-            todoText: ""
-        }));
-    };
-
-    onChangeBox = item => {
-        this.setState(({ todos }) => ({
-            todos: todos.map(el =>
-                el.id === item.id ? { ...el, done: !el.done } : el
-            )
-        }));
-    };
-
-    handleDel = item => {
-        this.setState(({ todos }) => ({
-            todos: todos.filter(el => el.id !== item.id)
-        }));
-    };
-
-    render() {
-        const { todos, todoText } = this.state;
-
-        return (
-            <>
-                <section className="container">
-                    <h1>My todo App</h1>
-                </section>
-                <section className="formContainer">
-                    <form action="#">
-                        <Input value={todoText} onChange={this.onChangeInput} />
-                        <Button onClick={this.onSubmitTodo}>Add todo</Button>
-                    </form>
-                </section>
-                <TodoList
-                    list={todos}
-                    onChangeBox={this.onChangeBox}
-                    handleDel={this.handleDel}
-                />
-            </>
-        );
+    const handleEditSave = () => {
+        setTodos(todos.map(todo =>
+            todo.id === editId ? { ...todo, name: editText } : todo
+        ))
+        setEditId(null)
+        setEditText('')
     }
+
+    const handleDel = (item) => {
+        setTodos(todos.filter(todo => todo.id !== item.id))
+    };
+
+    const handleDeleteChecked = () => {
+        setTodos(todos.filter(todo => !todo.done))
+    }
+
+    return (
+        <>
+            <section className="container">
+                <h1>My todo App</h1>
+            </section>
+            <section className="formContainer">
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <Input value={todoText} onChange={onChangeInput} />
+                    <Button onClick={onSubmitTodo}>Add todo</Button>
+                </form>
+            </section>
+            <TodoList
+                list={todos}
+                onChangeBox={onChangeBox}
+                handleDel={handleDel}
+                handleEdit={handleEdit}
+                handleEditSave={handleEditSave}
+                editId={editId}
+                editText={editText}
+                setEditText={setEditText}
+            />
+            <Button onClick={handleDeleteChecked}>Remove tasks checked</Button>
+        </>
+    );
 }

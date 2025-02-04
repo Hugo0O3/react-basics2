@@ -4,21 +4,25 @@
     box-sizing: border-box;
 }
 
-html {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFF9EF;
-}
-
 body {
     display: flex;
     justify-content: center;
-    width: 100vh;
+    align-items: flex-start;
+    width: 100vw;
     height: 100vh;
     background-color: #CCBCB3;
     margin: 0;
     text-align: center;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    background-color: #decfc6;
+    border-radius: 10px;
+    padding: 2rem;
 }
 
 .container {
@@ -46,13 +50,17 @@ li {
     max-width: 750px;
 }
 
-#root {
-    width: 50%;
-}
-
 li#text {
     font-size: 2rem;
 }
+
+.done {
+    background-color: #5c2c10;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
 
 ul {
     display: flex;
@@ -64,7 +72,7 @@ ul {
 
 .boutonDroit {
     background-color: #8f827a;
-    padding: 1.1rem;
+    padding: 0.5rem;
     border: none;
     color: white;
     border-radius: 1rem;
@@ -87,4 +95,8 @@ ul {
 button img {
     width: 50px;
     height: 50px;
+}
+
+input[type='checkbox'] {
+    transform: scale(2);
 }
