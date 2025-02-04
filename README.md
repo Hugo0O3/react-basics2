@@ -1,6 +1,6 @@
 # React Basics
 
-https://gorgeous-marigold-3f97ed.netlify.app/
+https://gorgeous-yeot-37d335.netlify.app/
 
 - Repository: `react-basics`
 - Mode: `solo`
