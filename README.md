@@ -1,6 +1,6 @@
 # React Basics
 
-https://gorgeous-yeot-37d335.netlify.app/
+[MyTodoApp](https://eclectic-starlight-c79adb.netlify.app/)
 
 - Repository: `react-basics`
 - Mode: `solo`
