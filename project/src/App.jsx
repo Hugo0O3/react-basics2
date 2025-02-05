@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./TodoButton";
 import TodoList from "./Todolist";
 import Input from "./TodoInput";
@@ -10,6 +10,14 @@ export default function App() {
     const [todoText, setTodoText] = useState('')
     const [editId, setEditId] = useState(null)
     const [editText, setEditText] = useState('')
+    const [todosLeft, setTodosLeft] = useState(0)
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+        const remainingTodos = todos.filter(todo => !todo.done).length;
+        setTodosLeft(remainingTodos);
+    }, [todos]);
+
 
     const onChangeInput = (e) => {
         setTodoText(e.target.value)
@@ -48,10 +56,15 @@ export default function App() {
         setTodos(todos.filter(todo => !todo.done))
     }
 
+    const deleteAll = () => {
+        setTodos(todos.filter(todo => todo.done && !todo.done))
+    }
+
     return (
         <>
             <section className="container">
                 <h1>My todo App</h1>
+                <p>{todosLeft} todos left</p>
             </section>
             <section className="formContainer">
                 <form onSubmit={(e) => e.preventDefault()}>
@@ -70,6 +83,7 @@ export default function App() {
                 setEditText={setEditText}
             />
             <Button onClick={handleDeleteChecked}>Remove tasks checked</Button>
+            <Button onClick={deleteAll}>Remove All</Button>
         </>
     );
 }

@@ -61,6 +61,10 @@ li#text {
     border-radius: 5px;
 }
 
+.done p {
+    text-decoration-line: line-through;
+}
+
 
 ul {
     display: flex;
