@@ -11,6 +11,7 @@ export default function App() {
     const [editId, setEditId] = useState(null)
     const [editText, setEditText] = useState('')
     const [todosLeft, setTodosLeft] = useState(0)
+    const [showDone, setShowDone] = useState(false)
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
@@ -57,8 +58,15 @@ export default function App() {
     }
 
     const deleteAll = () => {
-        setTodos(todos.filter(todo => todo.done && !todo.done))
+        {/* Méthode pour flex */ }
+        // setTodos(todos.filter(todo => todo.done && !todo.done))
+
+        setTodos([])
     }
+
+    const filterTodos = todos.filter(todo => !showDone || todo.done)
+
+    const todosDone = todos.some(todo => todo.done)
 
     return (
         <>
@@ -73,7 +81,7 @@ export default function App() {
                 </form>
             </section>
             <TodoList
-                list={todos}
+                list={filterTodos}
                 onChangeBox={onChangeBox}
                 handleDel={handleDel}
                 handleEdit={handleEdit}
@@ -84,6 +92,9 @@ export default function App() {
             />
             <Button onClick={handleDeleteChecked}>Remove tasks checked</Button>
             <Button onClick={deleteAll}>Remove All</Button>
+
+            <Button onClick={() => setShowDone(false)}>Show All</Button>
+            {todosDone && <Button onClick={() => setShowDone(true)}>Show Done</Button>}
         </>
-    );
+    );  
 }
